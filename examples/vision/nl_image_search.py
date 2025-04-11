@@ -228,7 +228,7 @@ def project_embeddings(
 ):
     projected_embeddings = layers.Dense(units=projection_dims)(embeddings)
     for _ in range(num_projection_layers):
-        x = tf.nn.gelu(projected_embeddings)
+        x = tf.keras.activations.gelu(projected_embeddings)
         x = layers.Dense(projection_dims)(x)
         x = layers.Dropout(dropout_rate)(x)
         x = layers.Add()([projected_embeddings, x])
